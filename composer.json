@@ -1,0 +1,19 @@
+{
+    "name": "sergi/misterplan",
+    "description": "Accommodation booking management application developed with PHP, Twig, JavaScript, and HTML.",
+    "type": "project",
+    "require": {
+        "twig/twig": "^3.30"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sergi\\Misterplan\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sergio-ab"
+        }
+    ],
+    "minimum-stability": "stable"
+}
