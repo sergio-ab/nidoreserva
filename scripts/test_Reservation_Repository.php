@@ -62,6 +62,33 @@ try {
     echo PHP_EOL . "Reservations matching combined filters: "
         . count($combinedFilteredReservations) . PHP_EOL;
 
+    // Find a reservation using its unique identifier.
+    $reservation = $reservationRepository->findById(
+        '123e4567-e89b-12d3-a456-426614174001'
+    );
+
+    // Display the reservation if it exists, or report that it was not found.
+    if ($reservation !== null) {
+        echo PHP_EOL . "Reservation found by ID:" . PHP_EOL;
+        print_r($reservation);
+    } else {
+        echo PHP_EOL . "Reservation not found." . PHP_EOL;
+    }
+
+    // Try to find a reservation using an ID that does not exist.
+    $missingReservation = $reservationRepository->findById(
+        '00000000-0000-0000-0000-000000000000'
+    );
+
+    // Check that the repository returns null when no reservation is found.
+    if ($missingReservation === null) {
+        echo PHP_EOL . "Non-existent reservation correctly returns null."
+            . PHP_EOL;
+    } else {
+        echo PHP_EOL . "Unexpected reservation found for a non-existent ID."
+            . PHP_EOL;
+    }
+
     // Confirm that the reservation queries completed without throwing an exception.
     echo "Reservations retrieved successfully!" . PHP_EOL;
 
