@@ -13,4 +13,14 @@ class ReservationRepository
     {
         $this->connection = $databaseConnection->getConnection();
     }
+
+    public function findAll(): array
+    {
+        $query = 'SELECT * FROM RESERVA ORDER BY FECHA_CREACION DESC';
+
+        $statement = $this->connection->query($query);
+
+        return $statement->fetchAll();
+    }
+
 }

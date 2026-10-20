@@ -13,9 +13,14 @@ try {
         $databaseConnection
     );
 
-    echo "Reservation repository initialized successfully!" . PHP_EOL;
+    $reservations = $reservationRepository->findAll();
+
+    echo "Reservations retrieved successfully!" . PHP_EOL;
+    echo "Total reservations: " . count($reservations) . PHP_EOL;
+
+    print_r($reservations);
 } catch (Throwable $exception) {
-    echo "Reservation repository initialization failed: "
+    echo "Reservation repository test failed: "
         . $exception->getMessage() . PHP_EOL;
 
     exit(1);
