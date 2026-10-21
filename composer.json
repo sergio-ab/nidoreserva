@@ -3,7 +3,8 @@
     "description": "Accommodation booking management application developed with PHP, Twig, JavaScript, and HTML.",
     "type": "project",
     "require": {
-        "twig/twig": "^3.30"
+        "twig/twig": "^3.30",
+        "vlucas/phpdotenv": "^5.7"
     },
     "autoload": {
         "psr-4": {
