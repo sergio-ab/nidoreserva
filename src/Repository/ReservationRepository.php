@@ -110,4 +110,55 @@ class ReservationRepository
         // Return the reservation if found, or null otherwise.
         return $reservation ?: null;
     }
+
+    /**
+     * Insert a new reservation into the database.
+     *
+     * @param array $data The reservation data to insert.
+     * @return bool Whether the reservation was inserted successfully.
+     */
+    public function create(array $data): bool
+    {
+        // Prepare the SQL query for inserting a new reservation.
+        $query = '
+            INSERT INTO RESERVA (
+                ID,
+                NOMBRE_HUESPED,
+                EMAIL_HUESPED,
+                NOMBRE_ALOJAMIENTO,
+                FECHA_ENTRADA,
+                FECHA_SALIDA,
+                ESTADO,
+                IMPORTE,
+                NOTAS
+            ) VALUES (
+                :id,
+                :nombre_huesped,
+                :email_huesped,
+                :nombre_alojamiento,
+                :fecha_entrada,
+                :fecha_salida,
+                :estado,
+                :importe,
+                :notas
+            )
+        ';
+
+        // Prepare the statement to safely handle the supplied values.
+        $statement = $this->connection->prepare($query);
+
+        // Execute the insert using the reservation data.
+        return $statement->execute([
+            'id' => $data['id'],
+            'nombre_huesped' => $data['nombre_huesped'],
+            'email_huesped' => $data['email_huesped'],
+            'nombre_alojamiento' => $data['nombre_alojamiento'],
+            'fecha_entrada' => $data['fecha_entrada'],
+            'fecha_salida' => $data['fecha_salida'],
+            'estado' => $data['estado'],
+            'importe' => $data['importe'],
+            'notas' => $data['notas'] ?? null,
+        ]);
+    }
+
 }
