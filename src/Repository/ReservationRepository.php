@@ -161,4 +161,30 @@ class ReservationRepository
         ]);
     }
 
+    /**
+     * Update the status of an existing reservation.
+     *
+     * @param string $id The reservation UUID.
+     * @param string $status The new reservation status.
+     * @return bool Whether the update was executed successfully.
+     */
+    public function updateStatus(string $id, string $status): bool
+    {
+        // Prepare a query to update the reservation status.
+        $query = '
+            UPDATE RESERVA
+            SET ESTADO = :estado
+            WHERE ID = :id
+        ';
+
+        // Prepare the statement to safely handle the supplied values.
+        $statement = $this->connection->prepare($query);
+
+        // Execute the update using the reservation ID and new status.
+        return $statement->execute([
+            'estado' => $status,
+            'id' => $id,
+        ]);
+    }
+
 }

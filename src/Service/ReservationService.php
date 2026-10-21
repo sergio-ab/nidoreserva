@@ -106,6 +106,103 @@ class ReservationService
     }
 
     /**
+     * Change a reservation status and record the event in a single transaction.
+     *
+     * @param string $id The reservation UUID.
+     * @param string $newStatus The requested reservation status.
+     * @return array The updated reservation.
+     */
+    public function changeStatus(string $id, string $newStatus): array
+    {
+        // Define the supported reservation statuses.
+        $allowedStatuses = ['pendiente', 'confirmada', 'cancelada'];
+
+        if (!in_array($newStatus, $allowedStatuses, true)) {
+            throw new \InvalidArgumentException(
+                'The requested reservation status is invalid.'
+            );
+        }
+
+        // Retrieve the reservation before attempting to change its status.
+        $reservation = $this->reservationRepository->findById($id);
+
+        if ($reservation === null) {
+            throw new \RuntimeException(
+                'The reservation was not found.'
+            );
+        }
+
+        // Determine whether the requested status transition is allowed.
+        $currentStatus = $reservation['ESTADO'];
+
+        $allowedTransitions = [
+            'pendiente' => ['confirmada', 'cancelada'],
+            'confirmada' => ['cancelada'],
+            'cancelada' => [],
+        ];
+
+        if (
+            !in_array(
+                $newStatus,
+                $allowedTransitions[$currentStatus] ?? [],
+                true
+            )
+        ) {
+            throw new \InvalidArgumentException(
+                "The reservation cannot change from '{$currentStatus}' "
+                . "to '{$newStatus}'."
+            );
+        }
+
+        // Start a transaction to keep the status and event consistent.
+        $this->connection->beginTransaction();
+
+        try {
+            // Update the reservation status in the database.
+            $this->reservationRepository->updateStatus($id, $newStatus);
+
+            // Define the event type and description for the status change.
+            $eventType = $newStatus === 'confirmada'
+                ? 'confirmacion'
+                : 'cancelacion';
+
+            $eventDescription = $newStatus === 'confirmada'
+                ? 'Reserva confirmada'
+                : 'Reserva cancelada';
+
+            // Record the status change in the reservation event history.
+            $this->reservationEventRepository->create(
+                $id,
+                $eventType,
+                $eventDescription
+            );
+
+            // Retrieve the updated reservation before committing.
+            $updatedReservation = $this->reservationRepository->findById($id);
+
+            if ($updatedReservation === null) {
+                throw new \RuntimeException(
+                    'The updated reservation could not be retrieved.'
+                );
+            }
+
+            // Commit both database operations after they succeed.
+            $this->connection->commit();
+
+            // Return the reservation with its updated status.
+            return $updatedReservation;
+        } catch (\Throwable $exception) {
+            // Roll back the transaction if any operation fails.
+            if ($this->connection->inTransaction()) {
+                $this->connection->rollBack();
+            }
+
+            // Re-throw the exception so the caller can handle the error.
+            throw $exception;
+        }
+    }
+
+    /**
      * Validate the data required to create a reservation.
      *
      * @param array $data The reservation data to validate.
