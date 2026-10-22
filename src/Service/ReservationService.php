@@ -257,6 +257,14 @@ class ReservationService
                 'The reservation dates are invalid.'
             );
         }
+        // Validate that the check-in date is not in the past.
+        $today = new \DateTimeImmutable('today');
+
+        if ($checkIn < $today) {
+            throw new \InvalidArgumentException(
+                'The check-in date cannot be in the past.'
+            );
+        }
 
         // Validate that the reservation amount is numeric and non-negative.
         if (!is_numeric($data['importe']) || (float) $data['importe'] < 0) {

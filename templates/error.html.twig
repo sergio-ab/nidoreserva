@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Error | MisterPlan{% endblock %}
+
+{% block content %}
+    <section class="error-page">
+        <h1>No se pudo completar la solicitud</h1>
+
+        <p>{{ message }}</p>
+
+        <a class="button" href="/">Volver al listado de reservas</a>
+    </section>
+{% endblock %}
