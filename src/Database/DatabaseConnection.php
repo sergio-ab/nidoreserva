@@ -1,6 +1,6 @@
 <?php
 
-namespace Sergi\Misterplan\Database;
+namespace Sergi\NidoReserva\Database;
 
 use PDO;
 use Dotenv\Dotenv;

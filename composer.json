@@ -1,5 +1,5 @@
 {
-    "name": "sergi/misterplan",
+    "name": "sergi/nidoreserva",
     "description": "Accommodation booking management application developed with PHP, Twig, JavaScript, and HTML.",
     "type": "project",
     "require": {
@@ -8,7 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Sergi\\Misterplan\\": "src/"
+            "Sergi\\NidoReserva\\": "src/"
         }
     },
     "authors": [

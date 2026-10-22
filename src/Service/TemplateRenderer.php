@@ -1,6 +1,6 @@
 <?php
 
-namespace Sergi\Misterplan\Service;
+namespace Sergi\NidoReserva\Service;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;

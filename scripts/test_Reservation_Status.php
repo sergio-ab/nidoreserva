@@ -1,8 +1,8 @@
 
 <?php
 
-use Sergi\Misterplan\Database\DatabaseConnection;
-use Sergi\Misterplan\Service\ReservationService;
+use Sergi\NidoReserva\Database\DatabaseConnection;
+use Sergi\NidoReserva\Service\ReservationService;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 

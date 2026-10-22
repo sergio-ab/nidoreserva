@@ -2,8 +2,8 @@
 
 // Import the classes needed to connect to the database
 // and access reservation data through the repository.
-use Sergi\Misterplan\Database\DatabaseConnection;
-use Sergi\Misterplan\Repository\ReservationRepository;
+use Sergi\NidoReserva\Database\DatabaseConnection;
+use Sergi\NidoReserva\Repository\ReservationRepository;
 
 // Load Composer's autoloader to make the project's classes
 // and installed dependencies available.

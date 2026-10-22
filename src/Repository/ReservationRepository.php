@@ -1,9 +1,9 @@
 <?php
 
-namespace Sergi\Misterplan\Repository;
+namespace Sergi\NidoReserva\Repository;
 
 // Import the database connection class.
-use Sergi\Misterplan\Database\DatabaseConnection;
+use Sergi\NidoReserva\Database\DatabaseConnection;
 
 // Import PDO to interact with the database.
 use PDO;
