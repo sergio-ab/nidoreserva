@@ -29,6 +29,11 @@ class WebController
         $this->templateRenderer = new TemplateRenderer();
     }
 
+    public function home(): void
+    {
+        echo $this->templateRenderer->render('home.html.twig');
+    }
+
     public function index(): void
     {
         try {

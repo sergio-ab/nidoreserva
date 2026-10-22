@@ -9,7 +9,7 @@
             <p>Consulta la información de esta reserva.</p>
         </div>
 
-        <a class="button button-secondary" href="/">Volver al listado</a>
+        <a class="button button-secondary" href="/reservations">Volver al listado</a>
     </section>
 
     <section class="reservation-list" aria-labelledby="reservation-details-title">
@@ -81,7 +81,7 @@
                 {% for event in events %}
                     <li class="event-item">
                         <div
-                            class="event-marker{% if event.TIPO == 'creacion' %} event-marker--creation{% elseif event.TIPO == 'confirmacion' %} event-marker--confirmation{% elseif event.TIPO == 'cancelacion' %} event-marker--cancellation{% endif %}"
+                            class="event-marker event-marker--{{ event.TIPO }}"
                             aria-hidden="true"
                         ></div>
 

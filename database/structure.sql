@@ -54,9 +54,9 @@ INSERT INTO RESERVA (
     'Juan Perez',
     'juan.perez@example.com',
     'Cabaña Quintana',
-    '2026-01-01',
-    '2026-01-03',
-    'pendiente',
+    '2026-12-01',
+    '2026-12-23',
+    'confirmada',
     100.00,
     NULL
 ), (
@@ -64,9 +64,9 @@ INSERT INTO RESERVA (
     'Maria López',
     'maria.lopez@example.com',
     'Casa Verde',
-    '2026-01-02',
-    '2026-01-04',
-    'confirmada',
+    '2027-05-17',
+    '2027-06-21',
+    'cancelada',
     150.00,
     NULL
 ), (
@@ -74,9 +74,9 @@ INSERT INTO RESERVA (
     'Pedro Gómez',
     'pedro.gomez@example.com',
     'Casa Azul',
-    '2026-01-03',
-    '2026-01-05',
-    'cancelada',
+    '2027-09-03',
+    '2027-10-05',
+    'pendiente',
     200.00,
     NULL
 );  
@@ -95,22 +95,18 @@ INSERT INTO RESERVA_EVENTO (
     'Reserva creada'
 ), (
     '123e4567-e89b-12d3-a456-426614174001',
+    'creación',
+    'Reserva creada'
+), (
+    '123e4567-e89b-12d3-a456-426614174002',
+    'creación',
+    'Reserva creada'
+), (
+    '123e4567-e89b-12d3-a456-426614174000',
     'confirmación',
     'Reserva confirmada'
 ), (
-    '123e4567-e89b-12d3-a456-426614174002',
+    '123e4567-e89b-12d3-a456-426614174001',
     'cancelación',
     'Reserva cancelada'
-), (
-    '123e4567-e89b-12d3-a456-426614174000',
-    'modificación',
-    'Reserva modificada'
-), (
-    '123e4567-e89b-12d3-a456-426614174001',
-    'reembolso',
-    'Reserva reembolsada'
-), (
-    '123e4567-e89b-12d3-a456-426614174002',
-    'reembolso',
-    'Reserva reembolsada'
 );

@@ -23,10 +23,17 @@ try {
     // Initialize the web controller.
     $webController = new WebController();
 
-    // Register the web interface route.
+    // Register the home page.
     $router->add(
         'GET',
         '/',
+        [$webController, 'home']
+    );
+
+    // Register the reservation list page.
+    $router->add(
+        'GET',
+        '/reservations',
         [$webController, 'index']
     );
 

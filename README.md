@@ -446,6 +446,7 @@ public/
 templates/
 ├── base.html.twig
 ├── error.html.twig
+├── home.html.twig
 └── reservations/
     ├── index.html.twig
     ├── new.html.twig
