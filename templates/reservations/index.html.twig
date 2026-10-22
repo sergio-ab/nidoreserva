@@ -1,0 +1,100 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Reservas | MisterPlan{% endblock %}
+
+{% block content %}
+    <section class="page-heading">
+        <div>
+            <h1>Reservas</h1>
+            <p>Consulta y gestiona las reservas de los alojamientos.</p>
+        </div>
+
+        <a class="button" href="/reservations/new">Crear reserva</a>
+    </section>
+
+    <section class="filters" aria-labelledby="filters-title">
+        <h2 id="filters-title">Filtrar reservas</h2>
+
+        <form id="reservation-filters">
+            <div class="form-group">
+                <label for="filter-name">Nombre del huésped</label>
+                <input
+                    type="text"
+                    id="filter-name"
+                    name="nombre_huesped"
+                    placeholder="Buscar por nombre"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="filter-status">Estado</label>
+                <select id="filter-status" name="estado">
+                    <option value="">Todos los estados</option>
+                    <option value="pendiente">Pendiente</option>
+                    <option value="confirmada">Confirmada</option>
+                    <option value="cancelada">Cancelada</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="filter-start">Entrada desde</label>
+                <input type="date" id="filter-start" name="fecha_entrada_desde">
+            </div>
+
+            <div class="form-group">
+                <label for="filter-end">Entrada hasta</label>
+                <input type="date" id="filter-end" name="fecha_entrada_hasta">
+            </div>
+
+            <button class="button" type="submit">Aplicar filtros</button>
+            <button class="button button-secondary" type="reset">Limpiar</button>
+        </form>
+    </section>
+
+    <section class="reservation-list" aria-labelledby="reservation-list-title">
+        <h2 id="reservation-list-title">Listado de reservas</h2>
+
+        <p id="reservation-message" role="status" aria-live="polite">
+            Se muestran las reservas disponibles.
+        </p>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Huésped</th>
+                        <th>Alojamiento</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Estado</th>
+                        <th>Importe</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="reservations-table-body">
+                    {% for reservation in reservations %}
+                        <tr>
+                            <td>{{ reservation.NOMBRE_HUESPED }}</td>
+                            <td>{{ reservation.NOMBRE_ALOJAMIENTO }}</td>
+                            <td>{{ reservation.FECHA_ENTRADA|date('d/m/Y') }}</td>
+                            <td>{{ reservation.FECHA_SALIDA|date('d/m/Y') }}</td>
+                            <td>
+                                <span class="status status-{{ reservation.ESTADO }}">
+                                    {{ reservation.ESTADO|capitalize }}
+                                </span>
+                            </td>
+                            <td>{{ reservation.IMPORTE|number_format(2, ',', '.') }} €</td>
+                            <td>
+                                <a href="/reservations/{{ reservation.ID }}">Ver detalle</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">No hay reservas que mostrar.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

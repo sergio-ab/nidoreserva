@@ -52,4 +52,29 @@ class ReservationEventRepository
             'descripcion' => $description,
         ]);
     }
+
+    /* Retrieve the events associated with a reservation. */
+    public function findByReservationId(string $reservationId): array
+    {
+        $query = '
+            SELECT
+                ID,
+                RESERVA_ID,
+                TIPO,
+                DESCRIPCION,
+                FECHA_CREACION
+            FROM RESERVA_EVENTO
+            WHERE RESERVA_ID = :reserva_id
+            ORDER BY FECHA_CREACION ASC, ID ASC
+        ';
+
+        $statement = $this->connection->prepare($query);
+
+        $statement->execute([
+            'reserva_id' => $reservationId,
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

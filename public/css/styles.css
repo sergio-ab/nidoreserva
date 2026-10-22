@@ -1,0 +1,460 @@
+/* Define the global color palette and typography. */
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #243247;
+    background-color: #f4f6fa;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+/* Apply consistent sizing to every element. */
+* {
+    box-sizing: border-box;
+}
+
+/* Remove default spacing and set the page background. */
+body {
+    margin: 0;
+    min-width: 320px;
+    line-height: 1.5;
+}
+
+/* Center the content and limit its maximum width. */
+.container {
+    width: min(1200px, calc(100% - 32px));
+    margin: 0 auto;
+}
+
+/* Keep headings visually consistent. */
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 8px;
+    font-size: 2rem;
+}
+
+h2 {
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+}
+
+/* Use a consistent style for links. */
+a {
+    color: #2457c5;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Style the main site header. */
+.site-header {
+    margin-bottom: 32px;
+    padding: 24px 0;
+    color: #ffffff;
+    background-color: #173b72;
+}
+
+.site-title {
+    display: inline-block;
+    margin-bottom: 4px;
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.site-title:hover {
+    text-decoration: none;
+}
+
+.site-subtitle {
+    margin-bottom: 0;
+    color: #dce7f7;
+}
+
+/* Separate the footer from the main content. */
+.site-footer {
+    margin-top: 48px;
+    padding: 24px 0;
+    color: #5b6678;
+    border-top: 1px solid #dce2eb;
+    font-size: 0.9rem;
+}
+
+.site-footer p {
+    margin-bottom: 0;
+}
+
+
+/* Give buttons a consistent appearance. */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 10px 16px;
+    border: 1px solid #2457c5;
+    border-radius: 6px;
+    color: #ffffff;
+    background-color: #2457c5;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #19449f;
+    text-decoration: none;
+}
+
+.button:focus-visible {
+    outline: 3px solid #9bbcff;
+    outline-offset: 2px;
+}
+
+/* Use a neutral style for secondary actions. */
+.button-secondary {
+    border-color: #cbd4e1;
+    color: #344258;
+    background-color: #ffffff;
+}
+
+.button-secondary:hover {
+    background-color: #edf1f7;
+}
+
+
+/* Style the filter panel and form controls. */
+.filters {
+    margin-bottom: 32px;
+    padding: 24px;
+    border: 1px solid #e0e6ef;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 12px rgb(23 59 114 / 5%);
+}
+
+#reservation-filters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    align-items: end;
+}
+
+/* Organize form fields and their labels */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 0.92rem;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 11px;
+    border: 1px solid #cbd4e1;
+    border-radius: 6px;
+    color: #243247;
+    background-color: #ffffff;
+    font: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #2457c5;
+    outline: 3px solid #dce7ff;
+}
+
+#reservation-filters .button {
+    justify-self: start;
+}
+
+
+/* Style the reservation list and its table. */
+.reservation-list {
+    padding: 24px;
+    border: 1px solid #e0e6ef;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 12px rgb(23 59 114 / 5%);
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #e8edf4;
+    vertical-align: middle;
+}
+
+th {
+    color: #344258;
+    background-color: #f4f6fa;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+td {
+    font-size: 0.92rem;
+}
+
+tbody tr:hover {
+    background-color: #f8faff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Display reservation statuses as compact badges. */
+.status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-pendiente {
+    color: #855400;
+    background-color: #fff1c2;
+}
+
+.status-confirmada {
+    color: #17663b;
+    background-color: #d9f5e4;
+}
+
+.status-cancelada {
+    color: #a52d35;
+    background-color: #fde2e3;
+}
+
+
+/* Adapt the layout to tablets and mobile screens. */
+@media (max-width: 700px) {
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    .site-header {
+        padding: 18px 0;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .filters,
+    .reservation-list {
+        padding: 16px;
+    }
+
+    #reservation-filters {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #reservation-filters .button {
+        width: 100%;
+    }
+
+    .reservation-list h2 {
+        margin-bottom: 12px;
+    }
+
+    th,
+    td {
+        padding: 11px 10px;
+    }
+}
+
+
+/* Reservation detail layout */
+.reservation-details {
+    display: grid;
+    grid-template-columns: minmax(150px, 220px) 1fr;
+    gap: 0;
+    margin: 0;
+}
+
+.reservation-details dt,
+.reservation-details dd {
+    margin: 0;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.reservation-details dt {
+    font-weight: 600;
+    color: var(--text-color, #374151);
+    background-color: var(--surface-color, #f8fafc);
+}
+
+.reservation-details dd {
+    overflow-wrap: anywhere;
+}
+
+.reservation-details dt:first-of-type {
+    border-top-left-radius: 8px;
+}
+
+.reservation-details dd:nth-of-type(1) {
+    border-top-right-radius: 8px;
+}
+
+.reservation-details dt:last-of-type,
+.reservation-details dd:last-of-type {
+    border-bottom: none;
+}
+
+@media (max-width: 600px) {
+    .reservation-details {
+        grid-template-columns: 1fr;
+    }
+
+    .reservation-details dt {
+        padding-bottom: 4px;
+        border-bottom: none;
+    }
+
+    .reservation-details dd {
+        padding-top: 4px;
+        margin-bottom: 8px;
+    }
+}
+
+
+/* Reservation event timeline */
+.reservation-history {
+    margin-top: 24px;
+}
+
+.event-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.event-item {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 12px;
+    position: relative;
+    padding-bottom: 24px;
+}
+
+.event-item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 18px;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--border-color, #e5e7eb);
+}
+
+
+.event-marker {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 3px solid #d1d5db;
+    background-color: #ffffff;
+    z-index: 1;
+}
+
+/* Use a different marker color for each reservation event. */
+.event-marker--creation {
+    border-color: #d97706;
+    background-color: #fef3c7;
+}
+
+.event-marker--confirmation {
+    border-color: #16a34a;
+    background-color: #dcfce7;
+}
+
+.event-marker--cancellation {
+    border-color: #dc2626;
+    background-color: #fee2e2;
+}
+
+.event-content {
+    min-width: 0;
+}
+
+.event-content p {
+    margin: 0 0 6px;
+    overflow-wrap: anywhere;
+}
+
+.event-content .event-type {
+    font-weight: 600;
+}
+
+.event-content time {
+    color: var(--text-muted, #6b7280);
+    font-size: 0.875rem;
+}
+
+/* Center reservation form action buttons */
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Add spacing below the page heading */
+.page-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Limit the width of the reservation creation form */
+#reservation-create-form {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+/* Center and narrow the reservation creation panel */
+.reservation-list:has(#reservation-create-form) {
+    width: 100%;
+    max-width: 720px;
+    margin-right: auto;
+    margin-left: auto;
+}

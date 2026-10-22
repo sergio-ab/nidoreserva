@@ -1,17 +1,48 @@
 <?php
 
 use Sergi\Misterplan\Controller\ReservationController;
+use Sergi\Misterplan\Controller\WebController;
 use Sergi\Misterplan\Router\Router;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-// Set the default response content type to JSON.
-header('Content-Type: application/json; charset=utf-8');
+// Set the response content type according to the requested path.
+$requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+if ($requestPath !== null && str_starts_with($requestPath, '/api/')) {
+    header('Content-Type: application/json; charset=utf-8');
+} else {
+    header('Content-Type: text/html; charset=utf-8');
+}
 
 try {
     // Initialize the router and reservation controller.
     $router = new Router();
     $reservationController = new ReservationController();
+
+    // Initialize the web controller.
+    $webController = new WebController();
+
+    // Register the web interface route.
+    $router->add(
+        'GET',
+        '/',
+        [$webController, 'index']
+    );
+
+    // Register the reservation creation page.
+    $router->add(
+        'GET',
+        '/reservations/new',
+        [$webController, 'new']
+    );
+
+    // Register the reservation detail page.
+    $router->add(
+        'GET',
+        '/reservations/{id}',
+        [$webController, 'show']
+    );
 
     // Register the reservation routes.
     $router->add(

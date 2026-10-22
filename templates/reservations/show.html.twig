@@ -1,0 +1,115 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Detalle de reserva | MisterPlan{% endblock %}
+
+{% block content %}
+    <section class="page-heading">
+        <div>
+            <h1>Detalle de la reserva</h1>
+            <p>Consulta la información de esta reserva.</p>
+        </div>
+
+        <a class="button button-secondary" href="/">Volver al listado</a>
+    </section>
+
+    <section class="reservation-list" aria-labelledby="reservation-details-title">
+        <h2 id="reservation-details-title">Datos de la reserva</h2>
+
+        <dl class="reservation-details">
+            <dt>Huésped</dt>
+            <dd>{{ reservation.NOMBRE_HUESPED }}</dd>
+
+            <dt>Correo electrónico</dt>
+            <dd>{{ reservation.EMAIL_HUESPED }}</dd>
+
+            <dt>Alojamiento</dt>
+            <dd>{{ reservation.NOMBRE_ALOJAMIENTO }}</dd>
+
+            <dt>Fecha de entrada</dt>
+            <dd>{{ reservation.FECHA_ENTRADA|date('d/m/Y') }}</dd>
+
+            <dt>Fecha de salida</dt>
+            <dd>{{ reservation.FECHA_SALIDA|date('d/m/Y') }}</dd>
+
+            <dt>Estado</dt>
+            <dd>
+                <span class="status status-{{ reservation.ESTADO }}">
+                    {{ reservation.ESTADO|capitalize }}
+                </span>
+
+                <div class="reservation-actions">
+                    {% if reservation.ESTADO == 'pendiente' %}
+                        <button
+                            class="button"
+                            type="button"
+                            id="confirm-reservation"
+                        >
+                            Confirmar reserva
+                        </button>
+                    {% endif %}
+
+                    {% if reservation.ESTADO != 'cancelada' %}
+                        <button
+                            class="button button-secondary"
+                            type="button"
+                            id="cancel-reservation"
+                        >
+                            Cancelar reserva
+                        </button>
+                    {% endif %}
+                </div>
+            </dd>
+
+            <dt>Importe</dt>
+            <dd>{{ reservation.IMPORTE|number_format(2, ',', '.') }} €</dd>
+
+            <dt>Notas</dt>
+            <dd>{{ reservation.NOTAS|default('Sin notas') }}</dd>
+
+            <dt>Fecha de creación</dt>
+            <dd>{{ reservation.FECHA_CREACION|date('d/m/Y H:i') }}</dd>
+        </dl>
+    </section>
+
+    <p id="status-message" role="status" aria-live="polite"></p>
+
+    <section class="reservation-list reservation-history" aria-labelledby="reservation-history-title">
+        <h2 id="reservation-history-title">Historial de eventos</h2>
+
+        {% if events is not empty %}
+            <ol class="event-timeline">
+                {% for event in events %}
+                    <li class="event-item">
+                        <div
+                            class="event-marker{% if event.TIPO == 'creacion' %} event-marker--creation{% elseif event.TIPO == 'confirmacion' %} event-marker--confirmation{% elseif event.TIPO == 'cancelacion' %} event-marker--cancellation{% endif %}"
+                            aria-hidden="true"
+                        ></div>
+
+
+                        <div class="event-content">
+                            <p class="event-type">
+                                {% if event.TIPO == 'creacion' %}
+                                    Creación
+                                {% elseif event.TIPO == 'confirmacion' %}
+                                    Confirmación
+                                {% elseif event.TIPO == 'cancelacion' %}
+                                    Cancelación
+                                {% else %}
+                                    {{ event.TIPO|replace({'_': ' '})|capitalize }}
+                                {% endif %}
+                            </p>
+
+                            <p>{{ event.DESCRIPCION }}</p>
+
+                            <time datetime="{{ event.FECHA_CREACION }}">
+                                {{ event.FECHA_CREACION|date('d/m/Y H:i') }}
+                            </time>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            <p>Esta reserva todavía no tiene eventos registrados.</p>
+        {% endif %}
+    </section>
+{% endblock %}
