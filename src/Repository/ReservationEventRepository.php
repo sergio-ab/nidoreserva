@@ -1,8 +1,8 @@
 <?php
 
-namespace Sergi\Misterplan\Repository;
+namespace Sergi\NidoReserva\Repository;
 
-use Sergi\Misterplan\Database\DatabaseConnection;
+use Sergi\NidoReserva\Database\DatabaseConnection;
 use PDO;
 
 class ReservationEventRepository

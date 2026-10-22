@@ -1,9 +1,9 @@
 <?php
 
-namespace Sergi\Misterplan\Controller;
+namespace Sergi\NidoReserva\Controller;
 
-use Sergi\Misterplan\Database\DatabaseConnection;
-use Sergi\Misterplan\Repository\ReservationRepository;
+use Sergi\NidoReserva\Database\DatabaseConnection;
+use Sergi\NidoReserva\Repository\ReservationRepository;
 
 class ReservationController
 {
@@ -110,7 +110,7 @@ class ReservationController
         try {
             // Create the reservation using the business service.
             $databaseConnection = new DatabaseConnection();
-            $reservationService = new \Sergi\Misterplan\Service\ReservationService(
+            $reservationService = new \Sergi\NidoReserva\Service\ReservationService(
                 $databaseConnection
             );
 
@@ -197,7 +197,7 @@ class ReservationController
 
             // Apply the status change and record its event.
             $databaseConnection = new DatabaseConnection();
-            $reservationService = new \Sergi\Misterplan\Service\ReservationService(
+            $reservationService = new \Sergi\NidoReserva\Service\ReservationService(
                 $databaseConnection
             );
 

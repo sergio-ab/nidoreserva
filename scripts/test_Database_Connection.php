@@ -1,7 +1,7 @@
 
 <?php
 
-use Sergi\Misterplan\Database\DatabaseConnection;
+use Sergi\NidoReserva\Database\DatabaseConnection;
 
 // Load Composer's autoloader to register project classes and dependencies.
 require_once dirname(__DIR__) . '/vendor/autoload.php';

@@ -1,6 +1,6 @@
 <?php
 
-namespace Sergi\Misterplan\Router;
+namespace Sergi\NidoReserva\Router;
 
 class Router
 {

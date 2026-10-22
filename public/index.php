@@ -1,8 +1,8 @@
 <?php
 
-use Sergi\Misterplan\Controller\ReservationController;
-use Sergi\Misterplan\Controller\WebController;
-use Sergi\Misterplan\Router\Router;
+use Sergi\NidoReserva\Controller\ReservationController;
+use Sergi\NidoReserva\Controller\WebController;
+use Sergi\NidoReserva\Router\Router;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 

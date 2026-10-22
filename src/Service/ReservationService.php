@@ -1,10 +1,10 @@
 <?php
 
-namespace Sergi\Misterplan\Service;
+namespace Sergi\NidoReserva\Service;
 
-use Sergi\Misterplan\Database\DatabaseConnection;
-use Sergi\Misterplan\Repository\ReservationRepository;
-use Sergi\Misterplan\Repository\ReservationEventRepository;
+use Sergi\NidoReserva\Database\DatabaseConnection;
+use Sergi\NidoReserva\Repository\ReservationRepository;
+use Sergi\NidoReserva\Repository\ReservationEventRepository;
 use PDO;
 
 class ReservationService
