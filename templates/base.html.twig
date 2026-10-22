@@ -3,26 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#20231e">
     <title>{% block title %}Gestión de reservas | NidoReserva{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <a class="site-title" href="/">NidoReserva</a>
-            <p class="site-subtitle">Gestión de reservas</p>
-        </div>
-    </header>
+    {% set isHome = current_path == '/' %}
+    {% set isNewReservation = current_path == '/reservations/new' %}
+    {% set isReservations = current_path starts with '/reservations' and not isNewReservation %}
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand-lockup" href="/" aria-label="NidoReserva, inicio">
+                <span class="brand-symbol" aria-hidden="true">n.</span>
+                <span class="brand-name">nido<span>reserva</span></span>
+            </a>
 
-    <main class="container">
-        {% block content %}{% endblock %}
-    </main>
+            <p class="sidebar-eyebrow">WORKSPACE</p>
+            <nav class="sidebar-nav" aria-label="Navegación principal">
+                <a class="nav-link{% if isHome %} is-active{% endif %}" href="/">
+                    <span class="nav-icon nav-icon-home" aria-hidden="true"></span>
+                    <span>Inicio</span>
+                    {% if isHome %}<span class="nav-current" aria-hidden="true"></span>{% endif %}
+                </a>
+                <a class="nav-link{% if isReservations %} is-active{% endif %}" href="/reservations">
+                    <span class="nav-icon nav-icon-grid" aria-hidden="true"></span>
+                    <span>Reservas</span>
+                    {% if isReservations %}<span class="nav-current" aria-hidden="true"></span>{% endif %}
+                </a>
+                <a class="nav-link{% if isNewReservation %} is-active{% endif %}" href="/reservations/new">
+                    <span class="nav-icon nav-icon-plus" aria-hidden="true"></span>
+                    <span>Nueva reserva</span>
+                    {% if isNewReservation %}<span class="nav-current" aria-hidden="true"></span>{% endif %}
+                </a>
+            </nav>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>Panel de gestión de reservas de NidoReserva</p>
+            <div class="sidebar-bottom">
+                <div class="sidebar-note-mark" aria-hidden="true">✳</div>
+                <p class="sidebar-note-title">Todo en su sitio.</p>
+                <p class="sidebar-note-copy">Una vista clara de cada estancia, cada huésped y cada detalle.</p>
+                <div class="sidebar-footer">
+                    <span class="sidebar-footer-dot" aria-hidden="true"></span>
+                    <span>Panel de gestión</span>
+                </div>
+            </div>
+        </aside>
+
+        <div class="app-main">
+            <header class="topbar">
+                <div>
+                    <p class="topbar-kicker">NIDORESERVA <span>/</span> OPERACIONES</p>
+                    <p class="topbar-context">Gestión de alojamientos</p>
+                </div>
+                <div class="topbar-status">
+                    <span class="topbar-status-dot" aria-hidden="true"></span>
+                    <span>Panel operativo</span>
+                </div>
+            </header>
+
+            <main class="main-content">
+                {% block content %}{% endblock %}
+            </main>
+
+            <footer class="site-footer">
+                <span>NidoReserva</span>
+                <span>Menos ruido. Más hospitalidad.</span>
+            </footer>
         </div>
-    </footer>
+    </div>
 
     <script src="/js/reservations.js" defer></script>
 </body>

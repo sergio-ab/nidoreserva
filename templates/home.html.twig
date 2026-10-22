@@ -1,0 +1,73 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Inicio | NidoReserva{% endblock %}
+
+{% block content %}
+    <section class="home-hero">
+        <p class="home-eyebrow">BIENVENIDO A NIDORESERVA</p>
+
+        <h1>
+            La hospitalidad<br>
+            empieza <em>aquí.</em>
+        </h1>
+
+        <p class="home-intro">
+            Un espacio para organizar cada estancia, cuidar los detalles
+            y mantener todas tus reservas en orden.
+        </p>
+
+        <div class="home-actions">
+            <a class="button" href="/reservations">
+                Consultar reservas <span aria-hidden="true">↗</span>
+            </a>
+
+            <a class="home-secondary-link" href="/reservations/new">
+                Crear una nueva reserva <span aria-hidden="true">＋</span>
+            </a>
+        </div>
+
+        <div class="home-decoration" aria-hidden="true">
+            <div class="home-decoration-ring"></div>
+            <div class="home-decoration-disc"></div>
+        </div>
+    </section>
+
+    <section class="home-workspace">
+        <div class="home-section-heading">
+            <div>
+                <p class="home-eyebrow">TU ESPACIO DE TRABAJO</p>
+                <h2>Todo en su sitio.</h2>
+            </div>
+
+            <p>Herramientas sencillas para una gestión más tranquila.</p>
+        </div>
+
+        <div class="home-action-grid">
+            <a class="home-action-card" href="/reservations">
+                <span class="home-card-number">01</span>
+                <span class="home-card-title">Ver reservas</span>
+                <span class="home-card-description">
+                    Consulta huéspedes, alojamientos, fechas y estados
+                    desde un solo lugar.
+                </span>
+                <span class="home-card-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a class="home-action-card home-action-card-accent"
+               href="/reservations/new">
+                <span class="home-card-number">02</span>
+                <span class="home-card-title">Crear reserva</span>
+                <span class="home-card-description">
+                    Registra una nueva estancia y guarda sus detalles
+                    de forma sencilla.
+                </span>
+                <span class="home-card-arrow" aria-hidden="true">↗</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="home-closing-note">
+        <p>Menos ruido. Más hospitalidad.</p>
+        <span>CADA DETALLE CUENTA</span>
+    </section>
+{% endblock %}

@@ -22,6 +22,16 @@ class TemplateRenderer
             'cache' => false,
             'debug' => false,
         ]);
+
+        $currentPath = parse_url(
+            $_SERVER['REQUEST_URI'] ?? '/',
+            PHP_URL_PATH
+        );
+
+        $this->twig->addGlobal(
+            'current_path',
+            is_string($currentPath) && $currentPath !== '' ? $currentPath : '/'
+        );
     }
 
     public function render(string $template, array $data = []): string
