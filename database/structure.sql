@@ -91,22 +91,22 @@ INSERT INTO RESERVA_EVENTO (
     DESCRIPCION
 ) VALUES (
     '123e4567-e89b-12d3-a456-426614174000',
-    'creación',
+    'creacion',
     'Reserva creada'
 ), (
     '123e4567-e89b-12d3-a456-426614174001',
-    'creación',
+    'creacion',
     'Reserva creada'
 ), (
     '123e4567-e89b-12d3-a456-426614174002',
-    'creación',
+    'creacion',
     'Reserva creada'
 ), (
     '123e4567-e89b-12d3-a456-426614174000',
-    'confirmación',
+    'confirmacion',
     'Reserva confirmada'
 ), (
     '123e4567-e89b-12d3-a456-426614174001',
-    'cancelación',
+    'cancelacion',
     'Reserva cancelada'
 );

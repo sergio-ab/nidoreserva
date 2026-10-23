@@ -34,6 +34,13 @@ class WebController
         echo $this->templateRenderer->render('home.html.twig');
     }
 
+    public function notFound(): void
+    {
+        echo $this->templateRenderer->render(
+            '404.html.twig',
+        );
+    }
+
     public function index(): void
     {
         try {

@@ -83,11 +83,34 @@ try {
         $_SERVER['REQUEST_METHOD'],
         $_SERVER['REQUEST_URI']
     );
-} catch (Throwable $exception) {
-    // Return a generic error without exposing internal details.
-    http_response_code(500);
 
-    echo json_encode([
-        'error' => 'An unexpected server error occurred.',
-    ]);
-}
+    } catch (\Throwable $exception) {
+        http_response_code(500);
+    
+        // Las peticiones a la API deben responder con JSON.
+        if ($requestPath !== null && str_starts_with($requestPath, '/api/')) {
+            header('Content-Type: application/json; charset=utf-8');
+    
+            echo json_encode([
+                'error' => 'An unexpected server error occurred.',
+            ]);
+    
+            return;
+        }
+    
+        // Las páginas web muestran el error con el diseño de NidoReserva.
+        header('Content-Type: text/html; charset=utf-8');
+    
+        try {
+            $renderer = new \Sergi\NidoReserva\Service\TemplateRenderer();
+    
+            echo $renderer->render('error.html.twig', [
+                'message' => 'Error 500. No se ha podido completar la solicitud. Inténtalo de nuevo más tarde.',
+            ]);
+        } catch (\Throwable $renderException) {
+            // Último recurso si tampoco se puede renderizar la plantilla.
+            echo '<h1>Error interno del servidor</h1>';
+            echo '<p>No se ha podido completar la solicitud.</p>';
+        }
+    }
+    
