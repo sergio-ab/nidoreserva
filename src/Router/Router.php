@@ -65,9 +65,20 @@ class Router
         header('Content-Type: application/json; charset=utf-8');
         http_response_code(404);
 
-        echo json_encode([
-            'error' => 'Route not found.',
-        ]);
+        if (str_starts_with($path, '/api/')) {
+            header('Content-Type: application/json; charset=utf-8');
+
+            echo json_encode([
+                'error' => 'Route not found.',
+            ]);
+
+            return;
+        }
+
+        header('Content-Type: text/html; charset=utf-8');
+
+        $webController = new \Sergi\NidoReserva\Controller\WebController();
+        $webController->notFound();
     }
 
 }

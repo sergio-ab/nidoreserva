@@ -354,10 +354,13 @@ async function changeReservationStatus(newStatus) {
 }
 
 /* Handle reservation status action clicks. */
-if (confirmButton && cancelButton) {
+if (confirmButton) {
     confirmButton.addEventListener('click', () => {
         changeReservationStatus('confirmada');
     });
+}
+
+if (cancelButton) {
 
     cancelButton.addEventListener('click', () => {
         changeReservationStatus('cancelada');

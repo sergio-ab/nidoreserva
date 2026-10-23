@@ -532,13 +532,11 @@ Las mejoras deberían priorizarse a partir de mediciones y requisitos reales, ev
 
 ## Despliegue
 
-**URL pública:** pendiente de despliegue.
+**URL pública:** https://nidoreserva.freehosting.dev
 
-La aplicación utiliza PHP y MySQL/MariaDB, por lo que el entorno de producción debe soportar ambos componentes, las extensiones de PHP requeridas y la configuración de las variables de entorno.
+La aplicación está desplegada en un hosting gratuito con soporte para PHP y MySQL/MariaDB.
 
-El despliegue deberá incluir la preparación de la base de datos, la configuración de secretos, la publicación de los recursos web y la configuración del servidor. El servidor integrado de PHP descrito en la instalación local no está pensado para producción.
-
-Una vez publicada la aplicación, se actualizará esta sección con la URL definitiva y las instrucciones específicas del entorno desplegado.
+El despliegue incluyó la preparación de la base de datos, la configuración de secretos, la publicación de los recursos web y la configuración del servidor. El servidor integrado de PHP descrito en la instalación local no está pensado para producción.
 
 ## Licencia
 
